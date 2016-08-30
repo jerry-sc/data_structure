@@ -83,13 +83,13 @@ public class SequenceList<E> {
     }
 
     /**
-     * 判别指定的位置是否合法
+     * 判别删除的位置是否合法
      *
      * @param index 删除位置
      */
     private void rangeCheckForRemove(int index) {
         if (index >= size || index < 0)
-            throw new IndexOutOfBoundsException("插入位置不合法！");
+            throw new IndexOutOfBoundsException("删除位置不合法！");
     }
 
     /**
