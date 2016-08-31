@@ -12,7 +12,7 @@ public class LinkedList<E> {
     /**
      * 链表头结点
      */
-    private Node<E> header;
+    Node<E> header;
 
     public LinkedList() {
         header = new Node<>();
