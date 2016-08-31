@@ -1,4 +1,4 @@
-package me.shenchao.linearList.linkedList.polynomial;
+package me.shenchao.linearList.polynomial;
 
 /**
  * 多项式加法<br>
