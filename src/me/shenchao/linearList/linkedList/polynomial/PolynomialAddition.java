@@ -2,7 +2,7 @@ package me.shenchao.linearList.linkedList.polynomial;
 
 /**
  * 多项式加法<br>
- *    为了更直接表述多项式加法，此版本为LinkedList类简化版，如有需要可按照其修改
+ * 为了更直接表述多项式加法，此版本为LinkedList类简化版，如有需要可按照其修改
  */
 public class PolynomialAddition {
 
@@ -19,6 +19,7 @@ public class PolynomialAddition {
 
     /**
      * 从链表尾部插入新结点
+     *
      * @param factor 系数
      * @param indice 指数
      */
@@ -35,7 +36,7 @@ public class PolynomialAddition {
 
     /**
      * 打印多项式，如果某项指数为0，则不打印指数项，直接打印系数；如果系数绝对值为1，则不打印此1；如果指数为1，不打印^1 <br>
-     *     例如：1 -x^2 +2x^4
+     * 例如：1 -x^2 +2x^4
      */
     public void print() {
         PolynomialNode p = header.next;
@@ -43,7 +44,7 @@ public class PolynomialAddition {
             if (p.factor != 0) {
                 if (p.indice == 0) {
                     System.out.print(p.factor);
-                } else  {
+                } else {
                     // 打印系数
                     if (p.factor > 0) {
                         System.out.print("+");
@@ -56,7 +57,7 @@ public class PolynomialAddition {
                         }
                     }
                     // 打印指数
-                    if (p.indice == 1)  {
+                    if (p.indice == 1) {
                         System.out.print("x");
                     } else {
                         System.out.print("x^" + p.indice);
@@ -71,16 +72,16 @@ public class PolynomialAddition {
     public static void main(String[] args) {
         // 初始化多项式AB
         PolynomialAddition polynomialA = new PolynomialAddition();
-        polynomialA.add(1,0);
-        polynomialA.add(-3,6);
-        polynomialA.add(7,12);
+        polynomialA.add(1, 0);
+        polynomialA.add(-3, 6);
+        polynomialA.add(7, 12);
         polynomialA.print();
 
         PolynomialAddition polynomialB = new PolynomialAddition();
-        polynomialB.add(-1,4);
-        polynomialB.add(3,6);
-        polynomialB.add(-9,10);
-        polynomialB.add(8,14);
+        polynomialB.add(-1, 4);
+        polynomialB.add(3, 6);
+        polynomialB.add(-9, 10);
+        polynomialB.add(8, 14);
         polynomialB.print();
 
         PolynomialAddition polynomialC = new PolynomialAddition();
