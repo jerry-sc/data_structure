@@ -98,12 +98,16 @@ public class LinkedList<E> {
     }
 
     /**
-     * 删除链表中间指定位置的元素，5个步骤
+     * 删除链表中间指定位置的元素，6个步骤
      *
      * @param index 删除位置
      */
     public void remove(int index) {
-        // 1. 判断删除位置是否合法
+        // 1. 判断链表是否为空
+        if (header.next == null) {
+            throw new RuntimeException("删除失败，因为链表为空！");
+        }
+        // 2. 判断删除位置是否合法
         rangeCheckForRemove(index);
         if (index == 0) {
             removeFirst();
@@ -113,14 +117,14 @@ public class LinkedList<E> {
             removeLast();
             return;
         }
-        // 2. 找到删除位置index前的结点p，以及删除位置index的结点q
+        // 3. 找到删除位置index前的结点p，以及删除位置index的结点q
         Node<E> p = findNode(index);
         Node<E> q = p.next;
-        // 3. 将p结点的next域指向q结点的next域
+        // 4. 将p结点的next域指向q结点的next域
         p.next = q.next;
-        // 4. 将q结点的next域设为null，等待垃圾回收机制回收q内存
+        // 5. 将q结点的next域设为null，等待垃圾回收机制回收q内存
         q.next = null;
-        // 5. 链表长度-1
+        // 6. 链表长度-1
         --size;
     }
 

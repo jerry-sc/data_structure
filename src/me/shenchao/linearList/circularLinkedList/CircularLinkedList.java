@@ -54,6 +54,45 @@ public class CircularLinkedList<E> {
     }
 
     /**
+     * 删除循环链表首部元素
+     */
+    public void removeFirst() {
+        // 判断循环链表是否为空
+        if (header.next == header) {
+            throw new RuntimeException("删除失败，因为链表为空！");
+        }
+        // 取得第一个结点p
+        Node<E> p = header.next;
+        header.next = p.next;
+        p.next = null;
+        --size;
+    }
+
+    /**
+     * 删除链表中间指定位置的元素，6个步骤
+     *
+     * @param index 删除位置
+     */
+    public void remove(int index) {
+        // 判断链表是否为空
+        if (header.next == header) {
+            throw new RuntimeException("删除失败，因为链表为空！");
+        }
+        // 判断删除位置是否合法
+        rangeCheckForRemove(index);
+        if (index == 0) {
+            removeFirst();
+            return;
+        }
+        // 找到删除位置index前的结点p，以及删除位置index的结点q
+        Node<E> p = findNode(index);
+        Node<E> q = p.next;
+        p.next = q.next;
+        q.next = null;
+        --size;
+    }
+
+    /**
      * 找到指定位置<b>前</b>的结点P
      *
      * @param index 插入位置，从0计数
@@ -70,6 +109,12 @@ public class CircularLinkedList<E> {
     private void rangeCheckForAdd(int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("插入位置不合法！");
+        }
+    }
+
+    private void rangeCheckForRemove(int index) {
+        if (index < 0 || index > size - 1) {
+            throw new IndexOutOfBoundsException("删除位置不合法！");
         }
     }
 
@@ -96,6 +141,14 @@ public class CircularLinkedList<E> {
 
         // 从其他位置插入
         circularLinkedList.add(5, 24);
+        circularLinkedList.print();
+
+        // 从链表首部删除元素
+        circularLinkedList.removeFirst();
+        circularLinkedList.print();
+
+        // 从指定位置删除元素
+        circularLinkedList.remove(4);
         circularLinkedList.print();
 
     }
