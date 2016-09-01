@@ -1,7 +1,7 @@
 package me.shenchao.stack;
 
 /**
- * 表达式求值<br>
+ * 后缀表达式求值<br>
  * 为方便演示，这里假设所给的字符串表达式中操作数都是10以内整数，否则需要区分
  */
 public class SuffixExpressionCal {
