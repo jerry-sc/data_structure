@@ -88,6 +88,101 @@ public class DoubleLinkedList<E> {
     }
 
     /**
+     * 删除双链表中第一个结点
+     */
+    public void removeFirst() {
+        // 判断链表是否为空
+        if (header.next == null) {
+            throw new RuntimeException("删除失败，因为链表为空！");
+        }
+        // 如果双链表中只有一个结点
+        if (size == 1) {
+            removeOnlyNode();
+        } else {
+            // 取得第一个结点
+            DuLNode<E> p = header.next;
+            header.next = p.next;
+            p.next.prev = null;
+            p.next = null;
+            --size;
+        }
+    }
+
+    /**
+     * 删除双链表最后一个结点
+     */
+    public void removeLast() {
+        // 判断链表是否为空
+        if (header.next == null) {
+            throw new RuntimeException("删除失败，因为链表为空！");
+        }
+        // 如果只有一个结点
+        if (size == 1) {
+            removeOnlyNode();
+        } else {
+            // 取得倒数第二个结点p,以及最后一个结点q
+            DuLNode<E> p = findNode(size - 1);
+            DuLNode<E> q = p.next;
+            // 修改指针域
+            p.next = q.next;
+            q.prev = null;
+            // 4. 链表长度-1
+            --size;
+        }
+    }
+
+    /**
+     * 删除链表中间指定位置的元素
+     *
+     * @param index 删除位置
+     */
+    public void remove(int index) {
+        // 判断链表是否为空
+        if (header.next == null) {
+            throw new RuntimeException("删除失败，因为链表为空！");
+        }
+        // 2. 判断删除位置是否合法
+        rangeCheckForRemove(index);
+        // 如果只有一个结点
+        if (size == 1) {
+            removeOnlyNode();
+            return;
+        }
+        if (index == 0) {
+            removeFirst();
+            return;
+        }
+        if (index == size - 1) {
+            removeLast();
+            return;
+        }
+        // 找到删除位置index前的结点p，以及删除位置index的结点q
+        DuLNode<E> p = findNode(index);
+        DuLNode<E> q = p.next;
+        // 修改指针域
+        p.next = q.next;
+        q.next.prev = p;
+        q.prev = null;
+        q.next = null;
+
+        --size;
+    }
+
+    private void rangeCheckForRemove(int index) {
+        if (index < 0 || index > size - 1) {
+            throw new IndexOutOfBoundsException("删除位置不合法！");
+        }
+    }
+
+    /**
+     * 如果链表中只有一个元素
+     */
+    private void removeOnlyNode() {
+        header.next = null;
+        --size;
+    }
+
+    /**
      * 找到指定位置<b>前</b>的结点P
      *
      * @param index 插入位置，从0计数
@@ -126,6 +221,18 @@ public class DoubleLinkedList<E> {
 
         // 在指定位置插入结点
         doubleLinkedList.add(1, 4);
+        doubleLinkedList.print();
+
+        // 删除第一个结点
+        doubleLinkedList.removeFirst();
+        doubleLinkedList.print();
+
+        // 删除最后一个结点
+        doubleLinkedList.removeLast();
+        doubleLinkedList.print();
+
+        // 删除指定位置的结点
+        doubleLinkedList.remove(1);
         doubleLinkedList.print();
     }
 }
