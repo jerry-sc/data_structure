@@ -40,9 +40,9 @@ public class LinkedList<E> {
      * @param index 插入位置，从0计数
      * @param data  插入元素
      */
-    public void addMiddle(int index, E data) {
+    public void add(int index, E data) {
         // 1. 判断插入位置是否合法
-        rangeCheckForAddMiddle(index);
+        rangeCheckForAdd(index);
         if (index == 0) {
             addFirst(data);
             return;
@@ -65,6 +65,7 @@ public class LinkedList<E> {
 
     /**
      * 在链表尾部插入结点，四个步骤
+     *
      * @param data 插入元素
      */
     public void addLast(E data) {
@@ -101,9 +102,17 @@ public class LinkedList<E> {
      *
      * @param index 删除位置
      */
-    public void removeMiddle(int index) {
+    public void remove(int index) {
         // 1. 判断删除位置是否合法
-        rangeCheckForRemoveMiddle(index);
+        rangeCheckForRemove(index);
+        if (index == 0) {
+            removeFirst();
+            return;
+        }
+        if (index == size - 1) {
+            removeLast();
+            return;
+        }
         // 2. 找到删除位置index前的结点p，以及删除位置index的结点q
         Node<E> p = findNode(index);
         Node<E> q = p.next;
@@ -124,20 +133,20 @@ public class LinkedList<E> {
             throw new RuntimeException("删除失败，因为链表为空！");
         }
         // 2. 取得倒数第二个结点p,以及最后一个结点q
-        Node<E> p = findNode(size-1);
+        Node<E> p = findNode(size - 1);
         Node<E> q = p.next;
         // 3. 将p的next域指向q的next域
         p.next = q.next;
         // 4. 链表长度-1
         --size;
-     }
+    }
 
     /**
      * 判断插入位置是否合法
      *
      * @param index 插入位置
      */
-    private void rangeCheckForAddMiddle(int index) {
+    private void rangeCheckForAdd(int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("插入位置不合法！");
         }
@@ -148,8 +157,8 @@ public class LinkedList<E> {
      *
      * @param index 删除位置
      */
-    private void rangeCheckForRemoveMiddle(int index) {
-        if (index < 1 || index >= size-1) {
+    private void rangeCheckForRemove(int index) {
+        if (index < 0 || index > size - 1) {
             throw new IndexOutOfBoundsException("删除位置不合法！");
         }
     }
@@ -192,7 +201,7 @@ public class LinkedList<E> {
         linkedList.print();
 
         // 在链表中间插入元素
-        linkedList.addMiddle(4, 7);
+        linkedList.add(4, 7);
         linkedList.print();
 
         // 在链表尾部插入元素
@@ -204,7 +213,7 @@ public class LinkedList<E> {
         linkedList.print();
 
         // 在链表中间删除元素
-        linkedList.removeMiddle(4);
+        linkedList.remove(3);
         linkedList.print();
 
         // 删除链表尾元素
