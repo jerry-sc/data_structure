@@ -43,6 +43,14 @@ public class LinkedList<E> {
     public void addMiddle(int index, E data) {
         // 1. 判断插入位置是否合法
         rangeCheckForAddMiddle(index);
+        if (index == 0) {
+            addFirst(data);
+            return;
+        }
+        if (index == size) {
+            addLast(data);
+            return;
+        }
         // 2. 创建一个新结点
         Node<E> newNode = new Node<>(data);
         // 3. 找到插入位置index前的结点p
@@ -130,7 +138,7 @@ public class LinkedList<E> {
      * @param index 插入位置
      */
     private void rangeCheckForAddMiddle(int index) {
-        if (index < 1 || index >= size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("插入位置不合法！");
         }
     }
