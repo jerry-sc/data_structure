@@ -64,7 +64,7 @@ public class InfixExpressionCal {
     }
 
     /**
-     * 比较运算符之间的优先级
+     * 比较运算符之间的优先级(对照PPT上表格)
      *
      * @param cur  当前操作符
      * @param peek 栈顶操作符
@@ -107,7 +107,7 @@ public class InfixExpressionCal {
 
 
     public static void main(String arg[]) {
-        String s = "3*(7-2)";
+        String s = "3*(7-2*3+2)";
         System.out.println(calInfixExpression(s));
     }
 
