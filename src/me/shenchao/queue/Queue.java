@@ -63,7 +63,6 @@ public class Queue<E> {
         }
         ++front;
         return (E) this.elementData[front];
-
     }
 
     /**
