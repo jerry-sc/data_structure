@@ -20,6 +20,7 @@ public class ShellSort {
             for (int i = 0; i < step; ++i) {
                 // 以固定步长找到相应的序列，并进行直接插入排序
                 for (int j = i + step; j < seqList.length; j += step) {
+                    // 直接插入排序
                     for (int k = j - step; k >= 0 && seqList[k + step] < seqList[k]; k -= step) {
                         swap(seqList, k + step, k);
                     }
