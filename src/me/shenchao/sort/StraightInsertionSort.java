@@ -1,7 +1,7 @@
 package me.shenchao.sort;
 
 /**
- * 直接插入排序（稳定）
+ * 直接插入排序（稳定），数据越有序时，插入时间越少
  */
 public class StraightInsertionSort {
 
@@ -12,6 +12,7 @@ public class StraightInsertionSort {
     private static void straightInsertionSort(int[] seqList) {
         // 由于只有一个元素时本身就是有序的，所以从第二个开始
         for (int i=1;i<seqList.length;++i) {
+            // 当发现后者位置较前者小时，前后交换
             for (int j=i-1; j>=0 && seqList[j+1] < seqList[j]; --j) {
                 swap(seqList,j+1,j);
             }
