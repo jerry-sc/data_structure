@@ -10,6 +10,7 @@ public class StraightInsertionSort {
      * @param seqList 需要排序的顺序表
      */
     private static void straightInsertionSort(int[] seqList) {
+        // 由于只有一个元素时本身就是有序的，所以从第二个开始
         for (int i=1;i<seqList.length;++i) {
             for (int j=i-1; j>=0 && seqList[j+1] < seqList[j]; --j) {
                 swap(seqList,j+1,j);
@@ -18,6 +19,9 @@ public class StraightInsertionSort {
         }
     }
 
+    /**
+     * 交换两个位置元素
+     */
     private static void swap(int[] seqList, int i, int j) {
         int temp = seqList[i];
         seqList[i] = seqList[j];
