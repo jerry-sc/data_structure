@@ -16,9 +16,11 @@ public class CreateBTreeByPreOrderAndInOrder {
      * @return 根节点
      */
     private static BTNode<Character> createBTree(char[] preOrder, int left1, int right1, char[] inOrder, int left2,int right2) {
+        // 递归终止条件
         if (left1 > right1 || left2 > right2) {
             return null;
         }
+        // 取先序序列的第一个元素作为根节点
         char rootValue = preOrder[left1];
         BTNode<Character> root = new BTNode<>(rootValue);
         // 找到根节点在中序序列中的位置，然后以此分为两半
