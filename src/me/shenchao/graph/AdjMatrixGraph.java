@@ -63,6 +63,39 @@ public class AdjMatrixGraph<E> {
         adjmatrix[v2][v1] = 1;
     }
 
+    /**
+     * 无向图获得某个结点的度
+     *
+     * @param v 顶点
+     */
+    public void calDegreeForUndigraph(int v) {
+        int degree = 0;
+        for (int i = 0; i < numOfVertex; ++i) {
+            degree += adjmatrix[v][i];
+        }
+        System.out.println("顶点" + vertexs[v] + "的度为 " + degree);
+    }
+
+    /**
+     * 有向图获得某个结点的度
+     *
+     * @param v 顶点
+     */
+    public void calDegreeForDigraph(int v) {
+        int inDegree = 0;
+        int outDegree = 0;
+        // 统计出度
+        for (int i = 0; i < numOfVertex; ++i) {
+            inDegree += adjmatrix[v][i];
+        }
+        System.out.println("顶点" + vertexs[v] + "的出度为 " + inDegree);
+        for (int i = 0; i < numOfVertex; ++i) {
+            outDegree += adjmatrix[i][v];
+        }
+        System.out.println("顶点" + vertexs[v] + "的入度为 " + outDegree);
+        System.out.println("顶点" + vertexs[v] + "的度为 " + (inDegree + outDegree));
+    }
+
     public static void main(String[] args) {
         // 建立有向图
         AdjMatrixGraph<String> digraph = new AdjMatrixGraph<>(4);
@@ -73,6 +106,7 @@ public class AdjMatrixGraph<E> {
         digraph.insertEdgeForDigraph(0, 2);
         digraph.insertEdgeForDigraph(3, 0);
         digraph.insertEdgeForDigraph(2, 3);
+        digraph.calDegreeForDigraph(0);
         // 建立无向图
         AdjMatrixGraph<String> unDigraph = new AdjMatrixGraph<>(4);
         for (int i = 0; i < 4; ++i) {
@@ -82,5 +116,7 @@ public class AdjMatrixGraph<E> {
         unDigraph.insertEdgeForUndigraph(0, 2);
         unDigraph.insertEdgeForUndigraph(3, 0);
         unDigraph.insertEdgeForUndigraph(2, 3);
+
+//        unDigraph.calDegreeForUndigraph(0);
     }
 }
