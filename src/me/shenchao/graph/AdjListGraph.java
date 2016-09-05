@@ -17,8 +17,8 @@ public class AdjListGraph {
      * 插入顶点
      * @param from 顶点序号
      */
-    public void insertVertex(int from) {
-        VNode vertex = new VNode(from);
+    public void insertVertex(int from, char data) {
+        VNode vertex = new VNode(from, data);
         vertexs[size++] = vertex;
     }
 
@@ -63,7 +63,7 @@ public class AdjListGraph {
         // 有向图 邻接表存储
         AdjListGraph digraph = new AdjListGraph(4);
         for (int i=0;i<4;++i) {
-            digraph.insertVertex(i);
+            digraph.insertVertex(i, (char) ('A'+i));
         }
         digraph.insertEdgeForDigraph(0,1);
         digraph.insertEdgeForDigraph(0,2);
@@ -73,7 +73,7 @@ public class AdjListGraph {
         // 无向图 邻接表存储
         AdjListGraph unDigraph = new AdjListGraph(4);
         for (int i=0;i<4;++i) {
-            unDigraph.insertVertex(i);
+            unDigraph.insertVertex(i, (char) ('A'+i));
         }
         // 对于无向图，前后顺序无关紧要
         unDigraph.insertEdgeForUndigraph(0,1);
@@ -84,7 +84,7 @@ public class AdjListGraph {
         // 无向图 邻接表存储
         AdjListGraph weightedDigraph = new AdjListGraph(4);
         for (int i=0;i<4;++i) {
-            weightedDigraph.insertVertex(i);
+            weightedDigraph.insertVertex(i, (char) ('A'+i));
         }
         weightedDigraph.insertEdgeForWeighteddigraph(0,1,1);
         weightedDigraph.insertEdgeForWeighteddigraph(0,3,5);
@@ -107,9 +107,12 @@ class VNode {
      */
     Edge first;
 
-    public VNode(int from) {
+    char data;
+
+    public VNode(int from, char data) {
         this.from = from;
         this.first = null;
+        this.data = data;
     }
 
 }
